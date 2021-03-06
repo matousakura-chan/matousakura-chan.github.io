@@ -1,0 +1,191 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gridea 使用 BUG 记录 | Sakura</title>
+<link rel="shortcut icon" href="https://matousakura-chan.github.io//favicon.ico?v=1615013351325">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://matousakura-chan.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Gridea 使用 BUG 记录 | Sakura - Atom Feed" href="https://matousakura-chan.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="Gridea 编辑器无法正常使用
+使用内置的编辑器出现前面段落无法删除的情况，解决方案为用 Gridea 生成文章后在源文件目录用 VSCode 或 Typora 打开。
+Typora 编辑后出现所有文件消失
+原因应该是原作者代码的问题，出..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://matousakura-chan.github.io/">
+  <img class="avatar" src="https://matousakura-chan.github.io//images/avatar.png?v=1615013351325" alt="">
+  </a>
+  <h1 class="site-title">
+    Sakura
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          文档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Gridea 使用 BUG 记录
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-06
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://matousakura-chan.github.io//post-images/gridea-shi-yong-bug-ji-lu.jpg" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="gridea-编辑器无法正常使用">Gridea 编辑器无法正常使用</h2>
+<p>使用内置的编辑器出现前面段落无法删除的情况，解决方案为用 Gridea 生成文章后在源文件目录用 VSCode 或 Typora 打开。</p>
+<h2 id="typora-编辑后出现所有文件消失">Typora 编辑后出现所有文件消失</h2>
+<p>原因应该是原作者代码的问题，出现文章的 md 文件缺少开头：</p>
+<pre><code>title: 'XXX'
+date: 2021-03-06 13:52:10
+tags: []
+published: false
+hideInList: false
+feature: 
+isTop: false
+</code></pre>
+<p>将直接出现异常导致无法读取真个根目录的文件。</p>
+<p>建议还是使用 VSCode 编辑，能查看源代码，Typora容易不兼容。</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#gridea-%E7%BC%96%E8%BE%91%E5%99%A8%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8">Gridea 编辑器无法正常使用</a></li>
+<li><a href="#typora-%E7%BC%96%E8%BE%91%E5%90%8E%E5%87%BA%E7%8E%B0%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1">Typora 编辑后出现所有文件消失</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://matousakura-chan.github.io/post/java-zong-he-mian-shi-ti-mu-1/">
+              <h3 class="post-title">
+                Java 综合面试题目一
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/matousakura-chan" target="_blank">Sakura</a>
+  <a class="rss" href="https://matousakura-chan.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
