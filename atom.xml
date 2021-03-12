@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://matousakura-chan.github.io/</id>
     <title>Sakura</title>
-    <updated>2021-03-06T09:54:44.222Z</updated>
+    <updated>2021-03-12T05:02:07.335Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://matousakura-chan.github.io/"/>
     <link rel="self" href="https://matousakura-chan.github.io/atom.xml"/>
@@ -10,6 +10,43 @@
     <logo>https://matousakura-chan.github.io/images/avatar.png</logo>
     <icon>https://matousakura-chan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Sakura</rights>
+    <entry>
+        <title type="html"><![CDATA[SpringBoot 中使用 thymeleaf 找不到 .HTML 文件的原因]]></title>
+        <id>https://matousakura-chan.github.io/post/springboot-zhong-shi-yong-thymeleaf-zhao-bu-dao-html-wen-jian-de-yuan-yin/</id>
+        <link href="https://matousakura-chan.github.io/post/springboot-zhong-shi-yong-thymeleaf-zhao-bu-dao-html-wen-jian-de-yuan-yin/">
+        </link>
+        <updated>2021-03-10T07:54:31.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li>
+<p>首先确认是否导入thymeleaf依赖。</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li>
+<p>确认自己写的.html为后缀的文件是否放到 resources/templates/ 文件夹下。</p>
+</li>
+<li>
+<p>确认自己的Controller类要放在与有@SpringBootApplication注解的启动类相同包或者子包下。</p>
+</li>
+<li>
+<p>确认Controller类不能使用 @RestController 或者 @ResponseBody注解，否则会直接return该字符串，是return不到目标html的。</p>
+<pre><code>@Controller
+public class TestController {
+    
+    @RequestMapping(&quot;/t1&quot;)
+    public String test1(){
+        //classpath:/templates/test.html
+        return &quot;test&quot;;
+    }    
+}
+</code></pre>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Spring AOP 的实现原理及其思想]]></title>
         <id>https://matousakura-chan.github.io/post/spring-aop-de-shi-xian-yuan-li-ji-qi-si-xiang/</id>

@@ -2,24 +2,22 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>转 CSDN Java 面试题集合 | Sakura</title>
+<title>SpringBoot 中使用 thymeleaf 找不到 .HTML 文件的原因 | Sakura</title>
 <link rel="shortcut icon" href="https://matousakura-chan.github.io//favicon.ico?v=1615525316577">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://matousakura-chan.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="转 CSDN Java 面试题集合 | Sakura - Atom Feed" href="https://matousakura-chan.github.io//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="SpringBoot 中使用 thymeleaf 找不到 .HTML 文件的原因 | Sakura - Atom Feed" href="https://matousakura-chan.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
     <meta name="description" content="
-Java 基础知识面试题（2020最新版）
-Java 集合容器面试题（2020最新版）
-Java 异常面试题（2020最新版）
-并发编程面试题（2020最新版）
-JVM 面试题（2020最新版）
-Spring 面试题（2020最新版）
-S..." />
-    <meta name="keywords" content="Java,面试" />
+
+首先确认是否导入thymeleaf依赖。
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId..." />
+    <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -81,41 +79,49 @@ S..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              转 CSDN Java 面试题集合
+              SpringBoot 中使用 thymeleaf 找不到 .HTML 文件的原因
             </h2>
             <div class="post-info">
               <span>
-                2021-03-06
+                2021-03-10
               </span>
               <span>
                 1 min read
               </span>
               
-                <a href="https://matousakura-chan.github.io/tag/Y2OV0cliZ/" class="post-tag">
-                  # Java
-                </a>
-              
-                <a href="https://matousakura-chan.github.io/tag/CpKf4l9K1/" class="post-tag">
-                  # 面试
-                </a>
-              
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <ul>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104390612"  target="_blank">Java 基础知识面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104588551"  target="_blank">Java 集合容器面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104390689"  target="_blank">Java 异常面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104863992"  target="_blank">并发编程面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104390752"  target="_blank">JVM 面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104397516"  target="_blank">Spring 面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104397427"  target="_blank">Spring MVC 面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104397299"  target="_blank">Spring Boot 面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/101292950"  target="_blank">MyBatis 面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104778621"  target="_blank">MySQL 数据库面试题（2020最新版）</a></li>
-<li><a href="https://thinkwon.blog.csdn.net/article/details/104588679"  target="_blank">Linux 面试题（2020最新版）</a></li>
-</ul>
+                <ol>
+<li>
+<p>首先确认是否导入thymeleaf依赖。</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li>
+<p>确认自己写的.html为后缀的文件是否放到 resources/templates/ 文件夹下。</p>
+</li>
+<li>
+<p>确认自己的Controller类要放在与有@SpringBootApplication注解的启动类相同包或者子包下。</p>
+</li>
+<li>
+<p>确认Controller类不能使用 @RestController 或者 @ResponseBody注解，否则会直接return该字符串，是return不到目标html的。</p>
+<pre><code>@Controller
+public class TestController {
+    
+    @RequestMapping(&quot;/t1&quot;)
+    public String test1(){
+        //classpath:/templates/test.html
+        return &quot;test&quot;;
+    }    
+}
+</code></pre>
+</li>
+</ol>
 
               </div>
               <div class="toc-container">
@@ -128,9 +134,9 @@ S..." />
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://matousakura-chan.github.io/post/gridea-shi-yong-bug-ji-lu/">
+            <a href="https://matousakura-chan.github.io/post/spring-aop-de-shi-xian-yuan-li-ji-qi-si-xiang/">
               <h3 class="post-title">
-                Gridea 使用 BUG 记录
+                Spring AOP 的实现原理及其思想
               </h3>
             </a>
           </div>
